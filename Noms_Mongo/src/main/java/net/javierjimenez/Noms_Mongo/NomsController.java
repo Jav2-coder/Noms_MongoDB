@@ -1,14 +1,19 @@
 package net.javierjimenez.Noms_Mongo;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,9 +54,23 @@ public class NomsController implements Initializable {
 	
 	public void buscarSant(ActionEvent event) {
 		
+		Document doc = col.find(or(eq("catala", txtNom.getText()), eq("castella", txtNom.getText()))).first();
+		
+		@SuppressWarnings("unchecked")
+		List<java.lang.String> santos = (List<String>) doc.get("sants");
+		
+		if(santos != null){
+			
+			System.out.println(Arrays.toString(santos.toArray()));
+			
+		} else {
+			System.out.println("NOPE");
+		}
 	}
 	
 	public void buscarNoms(ActionEvent event) {
+		
+		//MongoCursor<Document> cur = col.find();
 		
 	}	
 }
