@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.javierjimenez.Noms_Mongo.NomsController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
@@ -32,7 +31,7 @@
                   <Insets left="356.0" top="-250.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="diaSant" prefHeight="203.0" prefWidth="420.0" style="-fx-border-color: black; -fx-background-color: white;" text=" ">
+            <Label fx:id="diaSant" alignment="CENTER" contentDisplay="CENTER" prefHeight="203.0" prefWidth="420.0" style="-fx-border-color: black; -fx-background-color: white;" text=" ">
                <GridPane.margin>
                   <Insets left="40.0" top="87.0" />
                </GridPane.margin>
@@ -52,14 +51,14 @@
                   <Insets left="40.0" top="-250.0" />
                </GridPane.margin>
             </TextField>
-            <Label prefHeight="21.0" prefWidth="166.0" text="Consultar el día del Sant">
+            <Label prefHeight="21.0" prefWidth="171.0" text="Consultar el dia del Santo">
                <GridPane.margin>
-                  <Insets left="167.0" top="-337.0" />
+                  <Insets left="164.5" top="-337.0" />
                </GridPane.margin>
             </Label>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="296.0" text="Consultar noms que tenen Sant el mateix día" GridPane.columnIndex="1">
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="349.0" text="Consultar nombres que tienen el Santo el mismo dia" GridPane.columnIndex="1">
                <GridPane.margin>
-                  <Insets left="102.0" top="-337.0" />
+                  <Insets left="75.5" top="-337.0" />
                </GridPane.margin>
             </Label>
             <Label prefHeight="400.0" prefWidth="0.0" style="-fx-border-color: black;" GridPane.columnIndex="1">

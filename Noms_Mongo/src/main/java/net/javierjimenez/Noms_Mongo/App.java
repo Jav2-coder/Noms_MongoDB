@@ -13,7 +13,7 @@ public class App extends Application {
 			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/noms.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/noms.css").toExternalForm());
-			primaryStage.setTitle("Un altre cop noms!");
+			primaryStage.setTitle("Otra vez nombres!");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
