@@ -68,32 +68,46 @@ public class NomsController implements Initializable {
 			alert.setContentText("Los datos escritos son erróneos o\nno existe dicho nombre.\nRehaga la búsqueda.");
 			alert.showAndWait();
 		} else {
+
 			List<java.lang.String> sants = (List<String>) doc.get("sants");
 
-			String valor = "";
+			if (sants.size() == 1 && (sants.get(0).equals("1 de gener") || sants.get(0).equals("01 de gener"))
+					|| doc.get("sants") == null) {
 
-			for (String data : sants) {
+				String observacio = (String) doc.get("observacions");
 
-				valor = valor + "- " + data + " -\n";
+				if (observacio != null) {
+
+					diaSant.setText(observacio);
+
+				} else {
+
+					diaSant.setText("No hi ha cap observació");
+
+				}
+			} else {
+
+				String valor = "";
+
+				for (String data : sants) {
+
+					valor = valor + "- " + data + " -\n";
+				}
+				diaSant.setText(valor);
 			}
-			diaSant.setText(valor);
 		}
 	}
 
 	public void buscarNoms(ActionEvent event) {
 
 		List<Document> noms = new ArrayList<Document>();
-
 		ObservableList<String> lista_nombres = FXCollections.observableArrayList();
-
 		MongoCursor<Document> cur = col.find(in("sants", txtSant.getText())).iterator();
 
 		while (cur.hasNext()) {
 			noms.add(cur.next());
 		}
-
 		for (int i = 0; i < noms.size(); i++) {
-
 			String cat = (String) noms.get(i).get("catala");
 			String cast = (String) noms.get(i).get("castella");
 
@@ -104,7 +118,6 @@ public class NomsController implements Initializable {
 			}
 			lista_nombres.add("Catala: " + cat + " - Castella: " + cast);
 		}
-
 		if (lista_nombres.isEmpty()) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problema de Búsqueda");
@@ -112,8 +125,8 @@ public class NomsController implements Initializable {
 			alert.setContentText("Los datos escritos son erróneos o\nno existe dicho Santo.\nRehaga la búsqueda.");
 			alert.showAndWait();
 		} else {
-
 			llistaNoms.setItems(lista_nombres);
 		}
+		cur.close();
 	}
 }
