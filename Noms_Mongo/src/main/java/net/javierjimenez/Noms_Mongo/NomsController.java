@@ -120,7 +120,7 @@ public class NomsController implements Initializable {
 
 			List<java.lang.String> sants = (List<String>) doc.get("sants");
 
-			if (sants.size() == 1 && (sants.get(0).equals("1 de gener") || sants.get(0).equals("01 de gener"))
+			if ((sants.size() == 1 && (sants.get(0).equals("1 de gener") || sants.get(0).equals("01 de gener")))
 					|| doc.get("sants") == null) {
 
 				String observacio = (String) doc.get("observacions");
