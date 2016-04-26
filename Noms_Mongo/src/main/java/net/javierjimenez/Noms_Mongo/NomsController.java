@@ -26,25 +26,68 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * 
+ * @author alumne1daw
+ *
+ */
 public class NomsController implements Initializable {
 
+	/**
+	 * Objeto TextField que captura el valor escrito que corresponde a un
+	 * nombre.
+	 */
 	@FXML
 	private TextField txtNom;
+
+	/**
+	 * Objeto TextField que captura el valor escrito que corresponde a un Santo.
+	 */
 	@FXML
 	private TextField txtSant;
+
+	/**
+	 * Objeto Button que inicia la busqueda en la base de datos del nombre
+	 * escrito.
+	 */
 	@FXML
 	private Button btnSant;
+
+	/**
+	 * Objeto Button que inicia la busqueda en la base de datos del Santo
+	 * escrito.
+	 */
 	@FXML
 	private Button btnNom;
+
+	/**
+	 * Objeto Label donde añadiremos la informacion encontrada tras la busqueda
+	 * del nombre en nuestra base de datos.
+	 */
 	@FXML
 	private Label diaSant;
+
+	/**
+	 * Objeto ListView donde añadiremos la informacion encontrada en una lista
+	 * tras la busqueda del Santo en nuestra base de datos.
+	 */
 	@FXML
 	private ListView<String> llistaNoms;
 
+	/**
+	 * Objeto MongoClient que establece la conexion con la base de datos.
+	 */
 	private MongoClient client;
 
+	/**
+	 * Objeto MongoCollection que contiene todas las colecciones de la base de
+	 * datos que hemos elegido.
+	 */
 	private MongoCollection<Document> col;
 
+	/**
+	 * Metode que inicialitza la connexio amb la Base de Dades.
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		client = new MongoClient(new MongoClientURI("mongodb://admin:admin@ds017231.mlab.com:17231/noms_mongodb"));
@@ -54,6 +97,12 @@ public class NomsController implements Initializable {
 		col = db.getCollection("noms");
 	}
 
+	/**
+	 * Metodo encargado de buscar los dias que se celebra el santo del nombre
+	 * que hemos escrito.
+	 * 
+	 * @param event Objecte ActionEvent
+	 */
 	@SuppressWarnings("unchecked")
 	public void buscarSant(ActionEvent event) {
 
@@ -98,6 +147,12 @@ public class NomsController implements Initializable {
 		}
 	}
 
+	/**
+	 * Metodo encargado de buscar los nombres que celebran el santo en la fecha
+	 * que hemos escrito.
+	 * 
+	 * @param event Objecte ActionEvent
+	 */
 	public void buscarNoms(ActionEvent event) {
 
 		List<Document> noms = new ArrayList<Document>();
@@ -119,11 +174,15 @@ public class NomsController implements Initializable {
 			lista_nombres.add("Catala: " + cat + " - Castella: " + cast);
 		}
 		if (lista_nombres.isEmpty()) {
+
+			llistaNoms.getItems().clear();
+
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problema de Búsqueda");
 			alert.setHeaderText("ALERTA: Problema en la búsqueda");
 			alert.setContentText("Los datos escritos son erróneos o\nno existe dicho Santo.\nRehaga la búsqueda.");
 			alert.showAndWait();
+
 		} else {
 			llistaNoms.setItems(lista_nombres);
 		}

@@ -6,6 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author alumne1daw
+ *
+ */
 public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
